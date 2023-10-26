@@ -20,7 +20,6 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formfields;
 
   const handleChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setFormFields({ ...formfields, [name]: value });
   };
