@@ -1,0 +1,33 @@
+.checkout-container {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    
+
+
+    .labels {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border-bottom: solid;
+        padding-bottom: 10px;
+        align-items: center; 
+
+    }
+
+    .cart-item-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border-bottom: solid;
+        padding: 10px;
+        height: 120px;
+
+        .cartItem-img {
+            height: 100px;
+            width: 100px;
+        }
+    }
+}
