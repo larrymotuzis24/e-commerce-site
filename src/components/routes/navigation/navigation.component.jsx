@@ -2,15 +2,18 @@ import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from '../../../assets/crown.svg';
 import { Fragment } from "react";
 import { useContext } from "react";
-import { UserContext } from "../../../contexts/user.context";
-import './navigation.styles.scss';
+import {NavigationContainer, LogoContainer, NavLinks, NavLink} from  './navigation.styles.jsx';
 import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import CartIcon from "../../cart-icon/cart-icon.component";
 import CartDropdown from "../../cart-dropdown/cart-dropwdown";
 import { CartContext } from "../../../contexts/cart.context";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 
 const Navigation = () => {
-   const { currentUser } = useContext(UserContext);
+
+    const currentUser = useSelector(selectCurrentUser);
+
    const { isCartOpen } = useContext(CartContext);
 
 
@@ -19,25 +22,25 @@ const Navigation = () => {
    
   return (
     <Fragment>
-      <div className="navigation">
-        <Link className="logo-container" to='/' >
+      <NavigationContainer>
+        <LogoContainer to='/' >
          <CrwnLogo />
-        </Link>
-        <div className="nav-links-container"> 
-        <Link to='/shop' className="nav-link"> SHOP </Link>
+        </LogoContainer>
+        <NavLinks> 
+        <NavLink to='/shop' className="nav-link"> SHOP </NavLink>
         {currentUser ? 
           (
-            <span className="nav-link" onClick={signOutUser}> Sing Out</span>
+            <NavLink as='span' className="nav-link" onClick={signOutUser}> Sing Out</NavLink>
             )
              :(
-              <Link to='/sign-in' className="nav-link"> Sign In </Link>
+              <NavLink to='/sign-in' className="nav-link"> Sign In </NavLink>
              )
             }
             <CartIcon />
-         </div> 
+         </NavLinks> 
          { isCartOpen && <CartDropdown /> }
        
-      </div>
+      </NavigationContainer>
       <Outlet />
     </Fragment>
   );

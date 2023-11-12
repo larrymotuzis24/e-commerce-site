@@ -1,4 +1,4 @@
-import './sing-up-form.styles.scss';
+import {SignUpContainer} from './sing-up-form.styles.jsx';
 import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
@@ -6,8 +6,7 @@ import {
 } from "../../../utils/firebase/firebase.utils";
 import FormInput from "../../formInput/form-input.component";
 import Button from '../../button/button.component';
-import { useContext } from 'react';
-import { UserContext } from '../../../contexts/user.context';
+
 
 
 const defaultFields = {
@@ -63,7 +62,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpContainer>
       <h2> Don't have an account? </h2>
       <span> Sign Up with email and password </span>
       <form onSubmit={handleSubmit}>
@@ -101,7 +100,7 @@ const SignUpForm = () => {
         />
         <Button type="submit"> Submit </Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 
