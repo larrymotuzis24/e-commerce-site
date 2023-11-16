@@ -19,8 +19,7 @@ const CartDropdown = () => {
         )}
 
         {}
-        <Button buttonType="inverted">
-          {" "}
+        <Button>
           <Link to="/checkout"> GO TO CHECKOUT </Link>{" "}
         </Button>
       </CartItems>
