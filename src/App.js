@@ -5,7 +5,7 @@ import Navigation from "./components/routes/navigation/navigation.component";
 import Authentication from "./components/routes/authentication/authentication.component";
 import Shop from "./components/routes/shop/shop.component";
 import CheckOut from "./components/routes/checkout/checkout.component";
-import { onAuthChangedListener, createUserDocFromAuth } from "./utils/firebase/firebase.utils";
+import { onAuthChangedListener, createUserDocFromAuth, getCurrentUser } from "./utils/firebase/firebase.utils";
 import { setCurrentUser } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
 
@@ -16,22 +16,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthChangedListener((user) => {
-      const handleAuthChange = async () => {
-        if (user) {
-          await createUserDocFromAuth(user);
-          dispatch(setCurrentUser(user));
-          
-         
-        } else {
-          dispatch(setCurrentUser(null));
-        }
-      };
-  
-      handleAuthChange();
-    });
-  
-    return unsubscribe;
+    getCurrentUser().then((user) => console.log(user))
   }, [dispatch]);
   
 
